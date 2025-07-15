@@ -2,7 +2,10 @@ package com.projectJava.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+
+@EntityScan(basePackages = {"com/projectJava/demo/models"})
 @SpringBootApplication
 public class ProjectJavaApplication {
 

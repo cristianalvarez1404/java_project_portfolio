@@ -1,6 +1,6 @@
-package services;
+package com.projectJava.demo.services;
 
-import models.Customer;
+import com.projectJava.demo.models.Customer;
 
 import java.util.List;
 

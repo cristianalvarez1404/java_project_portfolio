@@ -1,4 +1,4 @@
-package models;
+package com.projectJava.demo.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

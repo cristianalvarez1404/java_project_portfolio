@@ -1,12 +1,10 @@
-package services;
+package com.projectJava.demo.services;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.projectJava.demo.exceptions.CustomerNotFoundException;
 import lombok.RequiredArgsConstructor;
-import models.Customer;
+import com.projectJava.demo.models.Customer;
 import org.springframework.stereotype.Service;
-import repositories.CustomerRepository;
+import com.projectJava.demo.repositories.CustomerRepository;
 import java.util.List;
 
 @Service
@@ -16,7 +14,12 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+        List<Customer> customers = customerRepository.findAll();
+
+        if(customers.isEmpty()){
+            throw new CustomerNotFoundException("No customers found");
+        }
+        return customers;
     }
 
     @Override
