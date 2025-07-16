@@ -10,5 +10,5 @@ public interface ICustomerService {
     List<Customer> getCustomersAffiliated();
     Customer createCustomer(Customer customer);
     Customer updateCustomerById(Long id,Customer customer);
-    void deleteCustomerById(Long id);
+    String deleteCustomerById(Long id);
 }

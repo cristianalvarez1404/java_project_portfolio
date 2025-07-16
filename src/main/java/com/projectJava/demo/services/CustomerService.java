@@ -24,26 +24,36 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public Customer getCustomerById(Long id) {
-        return customerRepository.findById(id).orElseThrow(()-> new RuntimeException("There is not customer"));
+        return customerRepository.findById(id).orElseThrow(()-> new CustomerNotFoundException("There is not customer"));
     }
 
     @Override
     public List<Customer> getCustomersAffiliated() {
-        return List.of();
+        return customerRepository.findByAffiliatedTrue();
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
-        return null;
+        return customerRepository.save(customer);
     }
 
     @Override
     public Customer updateCustomerById(Long id, Customer customer) {
-        return null;
+        return customerRepository.findById(id)
+                .map((customerToUpdate) -> {
+                    customerToUpdate.setFirstName(customer.getFirstName());
+                    customerToUpdate.setLastName(customer.getLastName());
+                    customerToUpdate.setAddress(customer.getAddress());
+                    customerToUpdate.setEmail(customer.getEmail());
+                    customerToUpdate.setAge(customer.getAge());
+                    customerToUpdate.setAffiliated(customer.getAffiliated());
+                    return customerToUpdate;
+                }).orElse(null);
     }
 
     @Override
-    public void deleteCustomerById(Long id) {
-
+    public String deleteCustomerById(Long id) {
+        customerRepository.deleteById(id);
+        return "Customer deleted successfully";
     }
 }
